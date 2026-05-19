@@ -1,0 +1,58 @@
+[
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 0m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"233"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 23m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"220"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"3h 55m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"400"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 0m (One stop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"245"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 0m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"180"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 0m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"230"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 0m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"335"
+    },
+    {
+        "time":"10:07am to  - 12:07pm",
+        "duration":"4h 0m (Nonstop)",
+        "flight":"MEX - LAS",
+        "airline":"Frontier Airlines 6966 operated by Operated By Volaris",
+        "price":"498"
+    }
+]

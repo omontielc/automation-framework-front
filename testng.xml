@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Main_Test_Suite_Execution">
+	<parameter name="testUrl" value="C:/Users/Osiris Montiel/Documents/eclipse-workspace/automation-framework-nearpedia/Nearpedia/site/index.html" />
+	
+	<parameter name="browser" value="CHROME" />
+	<!--<parameter name="browser" value="FIREFOX" />--> 
+	<!-- <parameter name="browser" value="EDGE" /> -->
+	<!-- <parameter name="browser" value="IEXPLORER" /> -->
+	<parameter name="max_wait" value="30" />
+
+	<test thread-count="1" name="testSuite-test">
+		<classes>
+			<class name="test.nearpedia.ATC01_NearpediaTest"/>		
+		</classes>
+	</test>
+</suite>
