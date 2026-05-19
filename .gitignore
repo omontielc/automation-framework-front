@@ -16,7 +16,16 @@ allure-report/
 # Reports
 reporte/
 test-output/
+*.docx
+*.xlsx
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Drivers
+drivers/
+
+# Logs
+logs/
+*.log
