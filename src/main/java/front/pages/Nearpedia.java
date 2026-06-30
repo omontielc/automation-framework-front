@@ -20,6 +20,7 @@ import util.WaitElements;
 
 /**
  * Page Object for the Nearpedia flight search screen.
+ *
  * @author Osiris Montiel Campos
  * @version 2025-07-06
  */
@@ -27,23 +28,23 @@ public class Nearpedia {
 
     private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(Nearpedia.class);
 
-    /** 
-     * Active driver session. 
+    /**
+     * Active driver session.
      */
     private final Driver driver;
 
-    /** 
-     * UI interaction helper. 
+    /**
+     * UI interaction helper.
      */
     private final UIElement uiElement;
 
-    /** 
-     * Object repository containing element locators for this module. 
+    /**
+     * Object repository containing element locators for this module.
      */
     private final Properties objRepository;
 
-    /** 
-     * Explicit wait helper. 
+    /**
+     * Explicit wait helper.
      */
     private final WaitElements wait;
 
@@ -65,17 +66,19 @@ public class Nearpedia {
 
     /**
      * Creates a new page object bound to the given driver session.
+     *
      * @param driver active driver session
      */
     public Nearpedia(Driver driver) {
         this.driver = driver;
-        uiElement     = new UIElement(driver);
-        wait          = new WaitElements(driver);
+        uiElement = new UIElement(driver);
+        wait = new WaitElements(driver);
         objRepository = new ObjectRepository("Nearpedia").getObjectRepository();
     }
-    
+
     /**
      * Selects the departure city from the "Flight From" dropdown.
+     *
      * @param nombreElemento descriptive name used in the evidence report
      * @param properties     object repository key for this element's locator
      * @param varTestData    visible text of the option to select
@@ -90,6 +93,7 @@ public class Nearpedia {
 
     /**
      * Selects the destination city from the "Flight To" dropdown.
+     *
      * @param nombreElemento descriptive name used in the evidence report
      * @param properties     object repository key for this element's locator
      * @param varTestData    visible text of the option to select
@@ -104,6 +108,7 @@ public class Nearpedia {
 
     /**
      * Enters the dynamically computed departure date into the "Departing" field.
+     *
      * @param nombreElemento descriptive name used in the evidence report
      * @param properties     object repository key for this element's locator
      */
@@ -117,6 +122,7 @@ public class Nearpedia {
 
     /**
      * Enters the dynamically computed return date into the "Returning" field.
+     *
      * @param nombreElemento descriptive name used in the evidence report
      * @param properties     object repository key for this element's locator
      */
@@ -141,6 +147,7 @@ public class Nearpedia {
 
     /**
      * Selects a sorting criterion from the "Sort By" dropdown.
+     *
      * @param nombreElemento descriptive name used in the evidence report
      * @param properties     object repository key for this element's locator
      * @param varTestData    visible text of the sorting option to select
@@ -158,32 +165,31 @@ public class Nearpedia {
      */
     @Step("Validate results sorted by price ascending")
     public void validarOrdenamiento() {
+        wait.visibilityElement("xpath", "//*[@id='results']/div/div[3]/span[1]");
         List<WebElement> prices = driver.getDriver().findElements(By.xpath("//*[@id='results']/div/div[3]/span[1]"));
-        System.out.println(prices);
         if (prices.isEmpty()) {
             Assert.fail("No flight results found — cannot validate sort order");
             return;
         }
 
         int previousPrice = 0;
-        
-        for (WebElement priceElement : prices) {
-        	
-        	Pattern patron = Pattern.compile("\\d+");
 
-                Matcher buscador = patron.matcher(priceElement.getText());
-                String numeroExtraido = "";
-               // If the number is found in the current string
-                if (buscador.find()) {
-                	// We extract the found text
-                	numeroExtraido = buscador.group();
-                }
-                int currentPrice = Integer.parseInt(numeroExtraido);
-                Assert.assertTrue(currentPrice >= previousPrice,"Sort order violation: found " + previousPrice + " followed by " + currentPrice);
-                previousPrice = currentPrice;
+        for (WebElement priceElement : prices) {
+
+            Pattern patron = Pattern.compile("\\d+");
+
+            Matcher buscador = patron.matcher(priceElement.getText());
+            String numeroExtraido = "";
+            // If the number is found in the current string
+            if (buscador.find()) {
+                // We extract the found text
+                numeroExtraido = buscador.group();
             }
-        
-        wait.sleep(5);
+            int currentPrice = Integer.parseInt(numeroExtraido);
+            Assert.assertTrue(currentPrice >= previousPrice, "Sort order violation: found " + previousPrice + " followed by " + currentPrice);
+            previousPrice = currentPrice;
+        }
+
         uiElement.validacion("Results are correctly sorted in ascending order by price", true, true);
         logger.info("Sort order validated successfully across {} results", prices.size());
     }
