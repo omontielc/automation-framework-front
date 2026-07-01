@@ -1,23 +1,23 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Jul 01 23:03:18 UTC 2026","Wed Jul 01 23:03:20 UTC 2026","2351","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC02_SauceDemoTest","test.saucedemo.ATC02_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
+"passed","Wed Jul 01 23:18:34 UTC 2026","Wed Jul 01 23:18:36 UTC 2026","2440","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC03_SauceDemoTest","test.saucedemo.ATC03_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
 When they log in with valid credentials
 And add the Sauce Labs Backpack to the cart
 And complete the checkout form with customer info
 Then the order confirmation page should display 'Thank you for your order!'
 "
-"passed","Wed Jul 01 23:03:18 UTC 2026","Wed Jul 01 23:03:20 UTC 2026","2394","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC04_SauceDemoTest","test.saucedemo.ATC04_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
+"passed","Wed Jul 01 23:18:34 UTC 2026","Wed Jul 01 23:18:36 UTC 2026","2567","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC02_SauceDemoTest","test.saucedemo.ATC02_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
 When they log in with valid credentials
 And add the Sauce Labs Backpack to the cart
 And complete the checkout form with customer info
 Then the order confirmation page should display 'Thank you for your order!'
 "
-"passed","Wed Jul 01 23:03:18 UTC 2026","Wed Jul 01 23:03:20 UTC 2026","2417","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC03_SauceDemoTest","test.saucedemo.ATC03_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
+"passed","Wed Jul 01 23:18:34 UTC 2026","Wed Jul 01 23:18:37 UTC 2026","2630","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC04_SauceDemoTest","test.saucedemo.ATC04_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
 When they log in with valid credentials
 And add the Sauce Labs Backpack to the cart
 And complete the checkout form with customer info
 Then the order confirmation page should display 'Thank you for your order!'
 "
-"passed","Wed Jul 01 23:03:18 UTC 2026","Wed Jul 01 23:03:20 UTC 2026","2305","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC01_SauceDemoTest","test.saucedemo.ATC01_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
+"passed","Wed Jul 01 23:18:34 UTC 2026","Wed Jul 01 23:18:36 UTC 2026","2545","Main_Test_Suite_Execution","testSuite-test","test.saucedemo.ATC01_SauceDemoTest","test.saucedemo.ATC01_SauceDemoTest","verifyHappyPathPurchase","verifyHappyPathPurchase","Given the user is on the SauceDemo login page
 When they log in with valid credentials
 And add the Sauce Labs Backpack to the cart
 And complete the checkout form with customer info
