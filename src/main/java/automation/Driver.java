@@ -48,6 +48,8 @@ public class Driver {
                     chromeOptions.addArguments("--disable-dev-shm-usage");
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--window-size=1920,1080");
+                    chromeOptions.addArguments("--allow-file-access-from-files");
+                    chromeOptions.addArguments("--disable-web-security");
                 }
                 driver = new ChromeDriver(chromeOptions);
                 logger.info("Chrome browser initialized — headless: {}", System.getenv("CI") != null);
