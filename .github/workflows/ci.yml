@@ -1,10 +1,21 @@
-name: CI - Nearpedia Test Suite
+name: CI - Automation Framework Front
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        required: true
+        default: 'QA'
+        type: choice
+        options:
+          - QA
+          - DEV
+          - STAGING
 
 jobs:
   test:
@@ -74,6 +85,12 @@ jobs:
 
       - name: Generate Allure report
         run: ./allure-2.24.0/bin/allure generate target/allure-results --clean -o target/allure-report
+
+      - name: Add Allure report URL to summary
+        run: |
+          echo "## ✅ Allure Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 [View Allure Report](https://omontielc.github.io/automation-framework-front/)" >> $GITHUB_STEP_SUMMARY
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
