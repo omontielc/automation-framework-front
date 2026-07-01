@@ -14,7 +14,8 @@ allure-report/
 .metadata/
 
 # Reports
-reporte/
+reporte/*
+!reporte/.gitkeep
 test-output/
 *.docx
 *.xlsx
