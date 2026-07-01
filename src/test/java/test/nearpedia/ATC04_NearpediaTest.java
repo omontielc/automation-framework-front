@@ -23,13 +23,13 @@ import util.Reporter;
 
 @Epic("Nearpedia Flight Search")
 @Feature("Flight Search Results")
-public class ATC01_NearpediaTest extends TestBase {
+public class ATC04_NearpediaTest extends TestBase {
 
     private static final String ATC_NAME = "ATC01_NearpediaTest";
     private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(ATC01_NearpediaTest.class);
     private final Reporter reporter;
 
-    public ATC01_NearpediaTest() {
+    public ATC04_NearpediaTest() {
         super(ATC_NAME);
         reporter = new Reporter();
     }
