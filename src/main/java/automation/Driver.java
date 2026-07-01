@@ -16,18 +16,22 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
  * Manages the initialization and lifecycle of the WebDriver session.
+ *
  * @author Osiris Montiel Campos
  * @version 2025-05-22
  */
 public class Driver {
 
-    /** Active WebDriver session. */
+    /**
+     * Active WebDriver session.
+     */
     private WebDriver driver;
 
     private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(Driver.class);
 
     /**
      * Initializes a new WebDriver session for the specified browser.
+     *
      * @param browser browser to launch: {@code "CHROME"}, {@code "FIREFOX"}, or {@code "EDGE"}
      * @throws IllegalArgumentException if the browser name is not recognized
      */
@@ -38,22 +42,41 @@ public class Driver {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("start-maximized");
+                if (System.getenv("CI") != null) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--window-size=1920,1080");
+                }
                 driver = new ChromeDriver(chromeOptions);
-                logger.info("Chrome browser initialized");
+                logger.info("Chrome browser initialized — headless: {}", System.getenv("CI") != null);
                 break;
 
             case "FIREFOX":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (System.getenv("CI") != null) {
+                    firefoxOptions.addArguments("--headless");
+                    firefoxOptions.addArguments("--width=1920");
+                    firefoxOptions.addArguments("--height=1080");
+                }
                 driver = new FirefoxDriver(firefoxOptions);
-                logger.info("Firefox browser initialized");
+                logger.info("Firefox browser initialized — headless: {}", System.getenv("CI") != null);
                 break;
 
             case "EDGE":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
+                if (System.getenv("CI") != null) {
+                    edgeOptions.addArguments("--headless=new");
+                    edgeOptions.addArguments("--no-sandbox");
+                    edgeOptions.addArguments("--disable-dev-shm-usage");
+                    edgeOptions.addArguments("--disable-gpu");
+                    edgeOptions.addArguments("--window-size=1920,1080");
+                }
                 driver = new EdgeDriver(edgeOptions);
-                logger.info("Edge browser initialized");
+                logger.info("Edge browser initialized — headless: {}", System.getenv("CI") != null);
                 break;
 
             default:
@@ -69,15 +92,16 @@ public class Driver {
 
     /**
      * Returns the active {@link WebDriver} instance.
+     *
      * @return current WebDriver session
      */
     public WebDriver getDriver() {
         return this.driver;
     }
-    
+
     /**
      * Ends the test session by closing all open browser windows.
-     *
+     * <p>
      * Equivalent to calling {@link #closeAll()}. Prefer this method in
      * teardown hooks for readability.
      */
@@ -128,6 +152,7 @@ public class Driver {
 
     /**
      * Navigates to the specified URL.
+     *
      * @param url fully qualified URL (e.g., {@code "https://example.com"})
      */
     public void goTo(String url) {
@@ -136,6 +161,7 @@ public class Driver {
 
     /**
      * Closes the browser and ends the WebDriver session.
+     *
      * @see #closeAll()
      */
     public void closeBrowser() {
@@ -152,6 +178,7 @@ public class Driver {
 
     /**
      * Returns the URL of the currently active page.
+     *
      * @return current page URL as a {@link String}
      */
     public String getCurrentUrl() {
@@ -167,6 +194,7 @@ public class Driver {
 
     /**
      * Returns all cookies present in the current browser session.
+     *
      * @return unmodifiable {@link Set} of {@link Cookie} objects
      */
     public Set<Cookie> getAllCookies() {
@@ -175,6 +203,7 @@ public class Driver {
 
     /**
      * Returns the cookie with the specified name.
+     *
      * @param cookie name of the cookie to retrieve
      * @return matching {@link Cookie}, or {@code null} if not found
      */
@@ -184,6 +213,7 @@ public class Driver {
 
     /**
      * Adds a cookie to the current browser session.
+     *
      * @param cookie {@link Cookie} to add
      */
     public void addCookie(Cookie cookie) {
