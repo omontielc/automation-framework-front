@@ -25,9 +25,9 @@ import util.Reporter;
  * @author Osiris Montiel Campos
  * @version 2025-07-06
  */
-public class Nearpedia {
+public class NearpediaPage {
 
-    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(Nearpedia.class);
+    private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(NearpediaPage.class);
 
     /**
      * Active driver session.
@@ -70,7 +70,7 @@ public class Nearpedia {
      *
      * @param driver active driver session
      */
-    public Nearpedia(Driver driver, Reporter reporte) {
+    public NearpediaPage(Driver driver, Reporter reporte) {
         this.driver = driver;
         uiElement = new UIElement(driver, reporte);
         wait = new WaitElements(driver);

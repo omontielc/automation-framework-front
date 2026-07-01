@@ -2,17 +2,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Main_Test_Suite_Execution" parallel="classes" thread-count="5">
 
-    <parameter name="testUrl" value="Nearpedia/site/index.html"/>
-    <parameter name="browser" value="CHROME"/>
+    <!--<parameter name="testUrl" value="Nearpedia/site/index.html"/>-->
+    <parameter name="testUrl" value="https://www.saucedemo.com"/>
+    <parameter name="browser" value="FIREFOX"/>
     <parameter name="max_wait" value="30"/>
 
     <test name="testSuite-test">
         <classes>
-            <class name="test.nearpedia.ATC01_NearpediaTest"/>
-            <class name="test.nearpedia.ATC02_NearpediaTest"/>
-            <class name="test.nearpedia.ATC03_NearpediaTest"/>
-            <class name="test.nearpedia.ATC04_NearpediaTest"/>
-            <class name="test.nearpedia.ATC05_NearpediaTest"/>
+            <!--<class name="test.nearpedia.ATC01_NearpediaTest"/>-->
+            <class name="test.saucedemo.ATC01_SauceDemoTest"/>
+            <class name="test.saucedemo.ATC02_SauceDemoTest"/>
+            <class name="test.saucedemo.ATC03_SauceDemoTest"/>
+            <class name="test.saucedemo.ATC04_SauceDemoTest"/>
         </classes>
     </test>
 

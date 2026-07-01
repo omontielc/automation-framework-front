@@ -1,6 +1,7 @@
 package automation;
 
 import java.util.Set;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.Cookie;
@@ -42,6 +43,11 @@ public class Driver {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("start-maximized");
+                chromeOptions.addArguments("--disable-save-password-bubble");
+                chromeOptions.setExperimentalOption("prefs", Map.of(
+                        "credentials_enable_service", false,
+                        "profile.password_manager_enabled", false
+                ));
                 if (System.getenv("CI") != null) {
                     chromeOptions.addArguments("--headless=new");
                     chromeOptions.addArguments("--no-sandbox");

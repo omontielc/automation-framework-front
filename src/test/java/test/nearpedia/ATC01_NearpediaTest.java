@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import automation.TestBase;
 import config.Config;
 import front.generalFeatures.Menu;
-import front.pages.Nearpedia;
+import front.pages.NearpediaPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -41,7 +41,7 @@ public class ATC01_NearpediaTest extends TestBase {
             """)
     @Severity(SeverityLevel.CRITICAL)
     public void verifyFlightResultsSortedByPriceAscending() {
-        Nearpedia nearpedia = new Nearpedia(getDriver(), getReporter());
+        NearpediaPage nearpedia = new NearpediaPage(getDriver(), getReporter());
         Menu menu = new Menu(getDriver(), getReporter());
 
         getReporter().crearReporte("1.0.0", ATC_NAME, "Test 1 - Nearpedia Flight Search", "Osiris Montiel");
@@ -65,7 +65,7 @@ public class ATC01_NearpediaTest extends TestBase {
     }
 
     @Step("Fill in flight search form")
-    private void fillSearchForm(Nearpedia nearpedia) {
+    private void fillSearchForm(NearpediaPage nearpedia) {
         nearpedia.selectListflightFrom("Flight From", "NEARPEDIA.nearpedia.cmbFlightFrom", getTestData().getData("FlightFrom", 1));
         nearpedia.selectListflightTo("Flight To", "NEARPEDIA.nearpedia.cmbFlightTo", getTestData().getData("FlightTo", 1));
         nearpedia.setTextDeparting("Departing", "NEARPEDIA.nearpedia.txtDeparting");
@@ -75,13 +75,13 @@ public class ATC01_NearpediaTest extends TestBase {
     }
 
     @Step("Apply sort filter")
-    private void applySortFilter(Nearpedia nearpedia) {
+    private void applySortFilter(NearpediaPage nearpedia) {
         nearpedia.selectListSort("Sort By", "NEARPEDIA.nearpedia.cmbSort", getTestData().getData("SortBy", 1));
         AllureReports.screenshot("Sort filter applied", getDriver().getDriver());
     }
 
     @Step("Validate results are sorted by price ascending")
-    private void validateSortOrder(Nearpedia nearpedia) {
+    private void validateSortOrder(NearpediaPage nearpedia) {
         nearpedia.validarOrdenamiento();
         AllureReports.screenshot("Sort order validated", getDriver().getDriver());
     }
