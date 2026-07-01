@@ -17,6 +17,7 @@ import automation.UIElement;
 import io.qameta.allure.Step;
 import util.ObjectRepository;
 import util.WaitElements;
+import util.Reporter;
 
 /**
  * Page Object for the Nearpedia flight search screen.
@@ -69,9 +70,9 @@ public class Nearpedia {
      *
      * @param driver active driver session
      */
-    public Nearpedia(Driver driver) {
+    public Nearpedia(Driver driver, Reporter reporte) {
         this.driver = driver;
-        uiElement = new UIElement(driver);
+        uiElement = new UIElement(driver, reporte);
         wait = new WaitElements(driver);
         objRepository = new ObjectRepository("Nearpedia").getObjectRepository();
     }

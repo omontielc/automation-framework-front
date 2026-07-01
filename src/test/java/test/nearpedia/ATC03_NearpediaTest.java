@@ -27,11 +27,9 @@ public class ATC03_NearpediaTest extends TestBase {
 
     private static final String ATC_NAME = "ATC01_NearpediaTest";
     private final org.apache.logging.log4j.Logger logger = LogManager.getLogger(ATC01_NearpediaTest.class);
-    private final Reporter reporter;
 
     public ATC03_NearpediaTest() {
         super(ATC_NAME);
-        reporter = new Reporter();
     }
 
     @Test
@@ -43,10 +41,10 @@ public class ATC03_NearpediaTest extends TestBase {
             """)
     @Severity(SeverityLevel.CRITICAL)
     public void verifyFlightResultsSortedByPriceAscending() {
-        Nearpedia nearpedia = new Nearpedia(getDriver());
-        Menu menu = new Menu(getDriver());
+        Nearpedia nearpedia = new Nearpedia(getDriver(), getReporter());
+        Menu menu = new Menu(getDriver(), getReporter());
 
-        reporter.crearReporte("1.0.0", ATC_NAME, "Test 1 - Nearpedia Flight Search", "Osiris Montiel");
+        getReporter().crearReporte("1.0.0", ATC_NAME, "Test 1 - Nearpedia Flight Search", "Osiris Montiel");
 
         navigateToFlights(menu);
         fillSearchForm(nearpedia);
@@ -57,7 +55,7 @@ public class ATC03_NearpediaTest extends TestBase {
 
         DateFormat dateFormat = new SimpleDateFormat("d_MM_yyyy_HH,mm,ss");
         String reportName = "Report_" + getTestData().getData("TestCaseName", 1) + "_" + dateFormat.format(new Date());
-        reporter.generarRepote(reportName, Config.REPORTER_PATH);
+        getReporter().generarRepote(reportName, Config.REPORTER_PATH);
     }
 
     @Step("Navigate to Flights menu")

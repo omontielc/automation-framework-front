@@ -10,6 +10,7 @@ import io.qameta.allure.Allure;
 import util.AllureReports;
 import util.TestData;
 import util.WaitElements;
+import util.Reporter;
 
 /**
  * Base class for all TestNG test classes in this framework.
@@ -25,6 +26,11 @@ public class TestBase {
     private static final ThreadLocal<UIElement> TL_UI = new ThreadLocal<>();
     private static final ThreadLocal<WaitElements> TL_WAIT = new ThreadLocal<>();
     private static final ThreadLocal<TestData> TL_DATA = new ThreadLocal<>();
+    private static final ThreadLocal<Reporter> TL_REPORTER = new ThreadLocal<>();
+
+    protected Reporter getReporter() {
+        return TL_REPORTER.get();
+    }
 
     protected Driver getDriver() {
         return TL_DRIVER.get();
@@ -55,10 +61,12 @@ public class TestBase {
         logger.info("Initializing test script — browser: {}", browser);
 
         Driver d = new Driver(browser);
+        Reporter rep = new Reporter();
         TL_DRIVER.set(d);
-        TL_UI.set(new UIElement(d));
+        TL_UI.set(new UIElement(d, rep));
         TL_WAIT.set(new WaitElements(d));
         TL_DATA.set(new TestData("Nearpedia", ATC_Name));
+        TL_REPORTER.set(rep);
 
         MAX_ATC = getTestData().getNUM_ATC();
 
@@ -94,5 +102,6 @@ public class TestBase {
         TL_UI.remove();
         TL_WAIT.remove();
         TL_DATA.remove();
+        TL_REPORTER.remove();
     }
 }

@@ -11,15 +11,20 @@ import util.Reporter;
 
 /**
  * Provides high-level interaction methods for web UI elements.
+ *
  * @author Osiris Montiel Campos
  * @version 2025-05-22
  */
 public class UIElement {
 
-    /** Active driver session. */
+    /**
+     * Active driver session.
+     */
     private Driver driver;
 
-    /** Last located web element. */
+    /**
+     * Last located web element.
+     */
     private WebElement element;
 
     /**
@@ -31,11 +36,13 @@ public class UIElement {
 
     /**
      * Creates a new {@code UIElement} bound to the given driver session.
-     * @param driver active driver session
+     *
+     * @param driver  active driver session
+     * @param reporte shared Reporter instance initialized by the test
      */
-    public UIElement(Driver driver) {
+    public UIElement(Driver driver, Reporter reporte) {
         this.driver = driver;
-        this.reporte = new Reporter();
+        this.reporte = reporte;
     }
 
     // ------------------------------------------------------------------------------------------------
@@ -44,24 +51,27 @@ public class UIElement {
 
     /**
      * Converts a locator type string and value into a Selenium {@link By} object.
-     * @param by 			locator strategy (case-sensitive)
-     * @param localizador 	locator value
+     *
+     * @param by          locator strategy (case-sensitive)
+     * @param localizador locator value
      * @return corresponding {@link By} instance
      * @throws IllegalArgumentException if {@code by} is not one of the supported strategies
      */
     public static By toBy(String by, String localizador) {
         return switch (by) {
-            case "id"          -> By.id(localizador);
-            case "name"        -> By.name(localizador);
+            case "id" -> By.id(localizador);
+            case "name" -> By.name(localizador);
             case "cssSelector" -> By.cssSelector(localizador);
-            case "xpath"       -> By.xpath(localizador);
-            case "linkText"    -> By.linkText(localizador);
-            default -> throw new IllegalArgumentException("Unsupported locator type: '" + by + "'. " + "Allowed values: id, name, cssSelector, xpath, linkText");
+            case "xpath" -> By.xpath(localizador);
+            case "linkText" -> By.linkText(localizador);
+            default ->
+                    throw new IllegalArgumentException("Unsupported locator type: '" + by + "'. " + "Allowed values: id, name, cssSelector, xpath, linkText");
         };
     }
-    
+
     /**
      * Navigates to the specified URL and optionally records an evidence step.
+     *
      * @param url        fully qualified URL to open
      * @param reportar   {@code true} to add a step to the evidence report
      * @param screenShot {@code true} to attach a screenshot to the report step
@@ -74,10 +84,11 @@ public class UIElement {
             reporte.agregarPaso(stepDescription, this.driver, screenShot);
         }
     }
-    
+
     /**
      * Finds a single element on the active page using the specified locator.
-     * @param by 		  locator strategy — see {@link #toBy(String, String)} for valid values
+     *
+     * @param by          locator strategy — see {@link #toBy(String, String)} for valid values
      * @param localizador locator value
      * @return the located {@link WebElement}, or {@code null} if not found
      */
@@ -91,9 +102,10 @@ public class UIElement {
         }
         return this.element;
     }
-    
+
     /**
      * Clicks an element and optionally records an evidence step.
+     *
      * @param elemento    element to click
      * @param nomElemento descriptive name used in the report step
      * @param reportar    {@code true} to add a step to the evidence report
@@ -110,10 +122,11 @@ public class UIElement {
 
     /**
      * Clicks a button element and optionally records an evidence step.
-     * @param button      button element to click
-     * @param nomButton   descriptive name used in the report step
-     * @param reportar    {@code true} to add a step to the evidence report
-     * @param screenShot  {@code true} to attach a screenshot to the report step
+     *
+     * @param button     button element to click
+     * @param nomButton  descriptive name used in the report step
+     * @param reportar   {@code true} to add a step to the evidence report
+     * @param screenShot {@code true} to attach a screenshot to the report step
      * @throws RuntimeException wrapping the original exception if the click fails
      */
     public void clickButton(WebElement button, String nomButton, Boolean reportar, Boolean screenShot) {
@@ -132,6 +145,7 @@ public class UIElement {
 
     /**
      * Clicks a radio button and optionally records an evidence step.
+     *
      * @param radioButton    radio button element to click
      * @param nomRadioButton descriptive name used in the report step
      * @param reportar       {@code true} to add a step to the evidence report
@@ -148,6 +162,7 @@ public class UIElement {
 
     /**
      * Clicks a checkbox and optionally records an evidence step.
+     *
      * @param checkButton    checkbox element to click
      * @param nomCheckButton descriptive name used in the report step
      * @param reportar       {@code true} to add a step to the evidence report
@@ -164,10 +179,11 @@ public class UIElement {
 
     /**
      * Clicks a hyperlink and optionally records an evidence step.
-     * @param link     link element to click
-     * @param nomLink  descriptive name used in the report step
-     * @param reportar    {@code true} to add a step to the evidence report
-     * @param screenShot  {@code true} to attach a screenshot to the report step
+     *
+     * @param link       link element to click
+     * @param nomLink    descriptive name used in the report step
+     * @param reportar   {@code true} to add a step to the evidence report
+     * @param screenShot {@code true} to attach a screenshot to the report step
      */
     public void clickLink(WebElement link, String nomLink, Boolean reportar, Boolean screenShot) {
         String stepDescription = "Clicking link \"" + nomLink + "\"";
@@ -180,6 +196,7 @@ public class UIElement {
 
     /**
      * Types text into the specified input element and optionally records an evidence step.
+     *
      * @param elemento    target input element
      * @param nomElemento descriptive name used in the report step
      * @param texto       text to type
@@ -197,6 +214,7 @@ public class UIElement {
 
     /**
      * Selects an option from a {@code <select>} element by its zero-based index.
+     *
      * @param lista      {@code <select>} element
      * @param nomLista   descriptive name used in the report step
      * @param opcion     zero-based index of the option to select
@@ -214,6 +232,7 @@ public class UIElement {
 
     /**
      * Selects an option from a {@code <select>} element by its {@code value} attribute.
+     *
      * @param lista      {@code <select>} element
      * @param nomLista   descriptive name used in the report step
      * @param opcion     value of the {@code value} attribute of the option to select
@@ -231,6 +250,7 @@ public class UIElement {
 
     /**
      * Selects an option from a {@code <select>} element by its visible text.
+     *
      * @param lista      {@code <select>} element
      * @param nomLista   descriptive name used in the report step
      * @param opcion     visible text of the option to select
@@ -248,6 +268,7 @@ public class UIElement {
 
     /**
      * Deselects all selected options from a multi-select {@code <select>} element.
+     *
      * @param lista      {@link Select} wrapper for the list element
      * @param nomLista   descriptive name used in the report step
      * @param reportar   {@code true} to add a step to the evidence report
@@ -264,6 +285,7 @@ public class UIElement {
 
     /**
      * Records a validation step in the evidence report.
+     *
      * @param stepDescription text describing the validation result
      * @param reportar        to add a step to the evidence report
      * @param screenShot      to attach a screenshot to the report step
